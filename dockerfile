@@ -1,0 +1,15 @@
+
+FROM python:3.14.6
+
+WORKDIR /app
+
+COPY requirement.txt .
+
+RUN pip install --no-cache-dir -r requirement.txt
+
+COPY app.py .
+COPY models/ ./models/
+
+EXPOSE 10000
+
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "10000"]
